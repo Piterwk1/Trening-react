@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import AddNinja from './AddNinja';
 import Ninjas from './Ninjas';
@@ -14,21 +13,11 @@ class App extends Component {
   };
 
   addNinja = (ninja) => {
-    ninja.id = Math.random();
-    // eslint-disable-next-line react/no-access-state-in-setstate
-    const ninjas = [...this.state.ninjas, ninja];
+    const state = { ...this.state };
     this.setState({
-      ninjas,
+      ninjas: state.push(ninja),
     });
-  };
-
-  deleteNinja = (id) => {
-    // eslint-disable-next-line prefer-destructuring
-    // eslint-disable-next-line react/no-access-state-in-setstate
-    const ninjas = this.state.ninjas.filter((ninja) => ninja.id !== id);
-    this.setState({
-      ninjas,
-    });
+    console.log(this.state);
   };
 
   render() {
@@ -37,7 +26,7 @@ class App extends Component {
         <h1>My first React app</h1>
 
         {/* eslint-disable-next-line react/destructuring-assignment */}
-        <Ninjas ninjas={this.state.ninjas} deleteNinja={this.deleteNinja} />
+        <Ninjas ninjas={this.state.ninjas} />
         <AddNinja addNinja={this.addNinja} />
       </div>
     );

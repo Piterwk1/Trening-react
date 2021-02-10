@@ -23,12 +23,7 @@ class App extends Component {
   };
 
   deleteNinja = (id) => {
-    // eslint-disable-next-line prefer-destructuring
-    // eslint-disable-next-line react/no-access-state-in-setstate
-    const ninjas = this.state.ninjas.filter((ninja) => ninja.id !== id);
-    this.setState({
-      ninjas,
-    });
+    console.log(`deliting ${id}`);
   };
 
   render() {
